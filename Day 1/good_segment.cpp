@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+//this approach is using the two pointers approach
 int largest_subarray(int k,std::vector<int> &v)
 {
     int start=0,end=0,ans = 0,sum = 0;
