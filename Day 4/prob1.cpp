@@ -2,34 +2,39 @@
 #include<bits/stdc++.h>
 int main()
 {
-    long long int t;
+    int t;
     std::cin>>t;
     std::cin.ignore();
-    for(long long int i=0;i<t;i++)
+    while(t--)
     {
         std::string s;
         std::getline(std::cin,s);
-        long long int start=0,end=0,val1 = s.length();
-        while(end<val1)
+        std::vector<char> odd,even;
+        for(int i=0;i<s.length();i++)
         {
-            if((s[start]-'0')%2!=(s[end]-'0')%2)
-            {
-                long long int i=start, j= end;
-                while(s[i]<=s[j] && i<=j)
-                    i++;
-                bool flag = false;
-                while(i<j && j>0)
-                {
-                    flag = true;
-                    std::swap(s[j-1],s[j]);
-                    j--;
-                }
-                start=j;
-                if(flag)
-                    start++;
+            if((s[i]-'0')%2==0)
+                even.push_back(s[i]);
+            else odd.push_back(s[i]);
+        }
+        int i=0,j=0;
+        while(i<even.size() && j<odd.size())
+        {
+            if(odd[j]<even[i]){
+                s[i+j] = odd[j];
+                j++;
             }
-            end++;
-            // std::cout<<start<<" "<<end<<"\n";
+            else{
+                s[i+j] = even[i];
+                i+=1;
+            }
+        }
+        while(i<even.size()){
+            s[i+j] = even[i];
+            i++;
+        }
+        while(j<odd.size()){
+            s[i+j] = odd[j];
+            j++;
         }
         std::cout<<s<<"\n";
     }
