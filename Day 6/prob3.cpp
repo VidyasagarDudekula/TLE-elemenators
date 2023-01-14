@@ -1,8 +1,10 @@
 //https://cses.fi/problemset/task/1091/
 #include<bits/stdc++.h>
-int get_possible_ticket(long long int budget,std::vector<long long int> &prices, std::unordered_map<long long int,long long int> &mp)
+long long int get_possible_ticket(long long int budget,std::vector<long long int> &prices, std::unordered_map<long long int,long long int> &mp)
 {
-    long long int start=0 ,end =prices.size()-1, ans =-1;
+    int start=0 ,end = prices.size() - 1;
+    long long int ans =-1;
+    // std::cout<<"indices:- "<<start<<" "<<end<<"\n";
     while(start<=end)
     {
         long long int mid = start + (end-start)/2;
@@ -43,8 +45,9 @@ int main()
             mp[v[index]]--;
             long long int val = v[index];
             if(mp[v[index]]==0)
-                v.erase(prices.begin()+index);
+                v.erase(v.begin()+index);
         }
         else std::cout<<-1<<"\n";
     }
 }
+//TLE
